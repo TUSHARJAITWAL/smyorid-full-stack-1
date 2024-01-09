@@ -1,0 +1,26 @@
+<% current_cart.cart_items.each do |cart_item| %>
+  <div class="card w-75 my-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" style="width:80%; height:200px;">
+        </div>
+        <div class="col-md-8">
+          <h5 class="card-title"><%= cart_item.product.name %></h5>
+          <p class="card-text"><%= cart_item.product.description %></p>
+          <p class="card-text">Price: <strong><%= cart_item.product.price %>₹</strong></p>
+          <p class="card-text">Total Quantity: <strong><%= cart_item.quantity %></strong></p>
+          <p class="card-text">Total Price: <strong><%= cart_item.quantity * cart_item.product.price %>₹</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="d-grid gap-2 col-6 mx-auto">
+  <% if current_cart.cart_items.any? %>
+    <%= link_to "Checkout", new_order_path, class: "btn btn-success my-4" %>.
+  <% else %>
+    <h2>Cart is empty</h2>
+  <% end %>
+</div>
